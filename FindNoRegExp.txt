@@ -1,0 +1,19 @@
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Pat {
+    public static void main(String[] args) {
+       
+    String otp="THis is the one time password OTP: 15621";
+Pattern p = Pattern.compile("[0-9]+");        
+//Pattern p = Pattern.compile("\\d+");
+        Matcher m=p.matcher(otp);
+       
+        while(m.find()){
+         
+        System.out.println("The extracted Integer is := " +"<("+m.group()+")>");
+        //-? matches a leading negative sign -- optionally. \d matches a digit, and we need to write \ as \\ in a Java String though. So, \d+ matches 1 or more digits.
+}
+
+ }
+}
