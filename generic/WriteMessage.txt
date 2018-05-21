@@ -1,0 +1,36 @@
+package demo1;
+
+//program to enter message in the body and send the message
+import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Sendmsg {
+    public static void main(String[] args) throws InterruptedException {
+        
+    
+            
+    System.setProperty("webdriver.chrome.driver","/home/wildjasmine/Desktop/chromedriver");
+        WebDriver driver=new ChromeDriver();
+     
+       driver.get("http://gmail.com");
+       driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+      driver.findElement(By.xpath("//input[@id='identifierId']")).sendKeys("laxmikant.balakrishna@wildjasmine.com");
+     driver.findElement(By.xpath("//span[contains(text(),'Next')]")).click();
+     driver.findElement(By.xpath("//input[@name='password']")).sendKeys("gta5gamer");
+     driver.findElement(By.xpath("//span[contains(text(),'Next')]")).click();
+     driver.findElement(By.xpath("//div[contains(text(),'COMPOSE')]")).click();
+     Thread.sleep(5000);
+     driver.findElement(By.xpath("//div[@class='Am Al editable LW-avf']")).sendKeys("Hello body");
+     driver.findElement(By.xpath("//div[@id=':ef']")).click();
+
+    
+    
+  
+        
+        
+}
+}
+
