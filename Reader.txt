@@ -1,0 +1,49 @@
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Iterator;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+
+public class Reader {
+
+    public static void main(String[] args) throws IOException, InvalidFormatException {
+        
+        String  excel="/home/wildjasmine/Desktop/workboook.xlsx";
+        
+        Workbook book=WorkbookFactory.create(new File(excel));//Creating Workbook object and Passing the excel file path
+        System.out.println("The Work book has "+"("+book.getSheetName(0)+")"+" sheets");//Priting the sheet name
+         Sheet sheet=book.getSheetAt(0);//Getting the sheet to use;
+         DataFormatter string=new DataFormatter();//Create a DataFormatter to format and get each cell's value as String
+         System.out.println("Iterating over row and colloumn");
+         //Using Iterator to iterate the Row from selected sheet
+       /*  Iterator<Row> cell1=sheet.rowIterator();//Iterate the row
+         while(cell1.hasNext()){
+             Row row=cell1.next();
+         //Make sure not to close the Iterator of the row
+         Iterator<Cell>  col=row.cellIterator();//Iterate the Coloumn
+         while(col.hasNext()){
+         Cell coloumn=col.next();
+         String cellvalue=string.formatCellValue(coloumn);//Format the values occupied from the cell to String
+             System.out.println(cellvalue+"\t");
+         }*/
+        System.out.println("Iterating over the row and coloumns"); 
+        for(Row row:sheet){
+            for(Cell cell:row){
+                String value=string.formatCellValue(cell);
+                System.out.println(value+"\t");
+            }
+            System.out.println();
+        }
+       
+       
+    
+    }
+    
+}
+
