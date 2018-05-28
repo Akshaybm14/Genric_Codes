@@ -32,14 +32,19 @@ public class Reader {
          String cellvalue=string.formatCellValue(coloumn);//Format the values occupied from the cell to String
              System.out.println(cellvalue+"\t");
          }*/
-        System.out.println("Iterating over the row and coloumns"); 
+       /* System.out.println("Iterating over the row and coloumns"); 
         for(Row row:sheet){
             for(Cell cell:row){
                 String value=string.formatCellValue(cell);
                 System.out.println(value+"\t");
             }
             System.out.println();
-        }
+        }*/
+        String  row=book.getSheetAt(0).getRow(0).getCell(0).toString();
+        System.out.println(row);
+       String colo= book.getSheetAt(0).getRow(1).getCell(0).toString();
+        System.out.println(colo);
+      
        
        
     
