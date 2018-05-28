@@ -1,0 +1,49 @@
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+public class Writer {
+    public static void main(String[] args) throws FileNotFoundException, IOException {
+                     String path="/home/wildjasmine/Desktop";
+
+        XSSFWorkbook book=new XSSFWorkbook();
+        XSSFSheet sheet=book.createSheet("Java");
+    Object[][]  bookDATA={
+        {"chandru"},
+        {"akdhay"},
+        {"nagaraja"},
+        {"row4"},
+    };
+     int rowcount=0;
+     for(Object[] aBook:bookDATA){
+         Row row=sheet.createRow(++rowcount);
+         int colcount=0;
+         for(Object field:aBook){
+             Cell cell=row.createCell(++colcount);
+             if(field instanceof String){
+                 cell.setCellValue((String) field);
+             }
+             else if(field instanceof Integer){
+             cell.setCellValue((Integer)field);
+             }
+         
+        
+     }
+            try(FileOutputStream outputStream=new FileOutputStream("/home/wildjasmine/Desktop/java.xlsx")){
+             book.write(outputStream);
+         }
+      
+          finally{
+             System.out.println("Book successfully created at the following location"+path);
+         }
+            
+            
+            
+}
+    }
+}    
+    
