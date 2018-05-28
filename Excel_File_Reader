@@ -1,0 +1,62 @@
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Reader {
+    
+    static String  excel="/home/wildjasmine/Desktop/workboook.xlsx";
+    public static String getValue(String path,int sheet,int r,int c) {
+        String v="";
+        try {
+            Workbook wb = WorkbookFactory.create(new FileInputStream(path));
+            v=wb.getSheetAt(sheet).getRow(r).getCell(c).toString();
+        }
+        catch (Exception e) {
+        }
+        return v;
+    }
+    
+    
+    
+    /*  public static void Reader(String path,int sheetno,int row1,int col) throws IOException, InvalidFormatException
+    {
+    Workbook book=WorkbookFactory.create(new File(path));//Creating Workbook object and Passing the excel file path
+    Sheet sheet=book.getSheetAt(sheetno);//Getting the sheet to use;
+    String  row=book.getSheetAt(sheetno).getRow(row1).getCell(col).toString();
+    System.out.println(row);
+    }*/
+    
+    public static void main(String[] args) throws IOException, InvalidFormatException, InterruptedException {
+        System.setProperty("webdriver.chrome.driver","/home/wildjasmine/Desktop/cd");
+        WebDriver driver=new ChromeDriver();
+        driver.get("http://www.gmail.com");
+        
+                            String un=getValue(excel,0,0,0);
+                            System.out.println(un);
+                            driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.findElement(By.name("identifier")).sendKeys( un);
+        driver.findElement(By.xpath("//span[text()='Next']")).click();
+                             String pw=getValue(excel,0,1,0);
+                            System.out.println(pw);
+         driver.findElement(By.name("password")).sendKeys(pw);
+        driver.findElement(By.xpath("//span[text()='Next']")).click();
+       
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+}
